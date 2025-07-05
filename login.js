@@ -1,19 +1,27 @@
-document.getElementById('login-form').addEventListener('submit', async function (e) {
+document.getElementById('login-form').addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-    const response = await fetch('https://notes-api-c1mt.onrender.com/api/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-    });
+    try {
+        const res = await fetch('https://your-backend-url/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
 
-    const data = await response.json();
+        const data = await res.json();
 
-    const msg = document.getElementById('msg');
-    msg.innerText = data.message;
+        if (res.ok) {
+            // ✅ REDIRECT here
+            window.location.href = '/dashboard.html'; // or any page
+        } else {
+            document.getElementById('msg').innerText = data.message || 'Login failed';
+        }
+
+    } catch (err) {
+        document.getElementById('msg').innerText = 'Server error';
+        console.error(err);
+    }
 });

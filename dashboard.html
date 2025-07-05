@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Task App</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 400px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+    }
+
+    .info span {
+      margin-bottom: 4px;
+    }
+
+    .profile {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #555;
+      transition: transform 0.3s ease;
+    }
+
+    .profile:hover {
+      transform: scale(1.1);
+    }
+
+    .profile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .add-task {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .add-task input {
+      flex: 1;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .add-task button {
+      padding: 8px 12px;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .add-task button:hover {
+      background: #388e3c;
+    }
+
+    .task-list {
+      list-style: none;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .task-list li {
+      background: #e0f7fa;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 6px;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .thank {
+      text-align: center;
+      font-style: italic;
+      color: #333;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    .developer {
+      text-align: center;
+      margin-top: 8px;
+      font-size: 13px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="info">
+        <span><strong>6</strong> Posts</span>
+        <span><strong>87</strong> Following</span>
+      </div>
+      <a href="https://www.instagram.com/itz_dharmveer_001" target="_blank" class="profile">
+        <img src="https://i.ibb.co/0VRNzXS6/491432277-17864086746388642-8252065106835727900-n.jpg" alt="Profile Image">
+      </a>
+    </header>
+
+    <div class="add-task">
+      <input type="text" id="taskInput" placeholder="... Add Task">
+      <button onclick="addTask()">➕</button>
+    </div>
+
+    <ul id="taskList" class="task-list"></ul>
+
+    <div class="thank">Thank you 😊</div>
+    <div class="developer">Developer: Abhishek</div>
+  </div>
+
+  <script>
+    function addTask() {
+      const input = document.getElementById("taskInput");
+      const taskList = document.getElementById("taskList");
+
+      if (input.value.trim() === "") return;
+
+      const li = document.createElement("li");
+      li.textContent = input.value;
+
+      taskList.appendChild(li);
+      input.value = "";
+    }
+  </script>
+</body>
+</html>
